@@ -1,4 +1,4 @@
-FROM echohead/scratch
-ADD static static
+FROM echohead/nobody
+ADD static /bin/static
 USER nobody
-EXPOSE 8080
+ENTRYPOINT [ "/bin/static" ]

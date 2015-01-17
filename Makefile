@@ -10,7 +10,7 @@ build:
 	docker build -t $(NAME):$(VERSION) --rm .
 
 run:
-	docker run --rm -p 8080 echohead/static /static
+	docker run --rm -p 3000:8080 echohead/static --bind :8080 --root /
 
 setup:
 	# get go version of net package, to allow static linking.
