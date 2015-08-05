@@ -4,7 +4,7 @@ VERSION=latest
 all: build
 
 build:
-	CGO_ENABLED=0 go build static.go
+	go build --tags netgo --ldflags '-extldflags "-static"' -installsuffix cgo -o static .
 
 setup:
 	# get go version of net package, to allow static linking.
