@@ -2,12 +2,17 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
+
+const version = "0.0.2"
 
 var bind = flag.String("bind", ":8080", "bind address")
 var root = flag.String("root", "", "root directory")
+var showVersion = flag.Bool("version", false, "print version and exit")
 
 func loggingHandler(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -18,6 +23,10 @@ func loggingHandler(h http.Handler) http.Handler {
 
 func main() {
 	flag.Parse()
+	if *showVersion {
+		fmt.Println(version)
+		os.Exit(0)
+	}
 	if *root == "" {
 		log.Fatal("missing required flag --root")
 	}
