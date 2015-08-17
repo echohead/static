@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-const version = "0.0.2"
+const version = "0.0.3"
 
 var bind = flag.String("bind", ":8080", "bind address")
 var root = flag.String("root", "", "root directory")
@@ -25,7 +25,7 @@ func main() {
 	flag.Parse()
 	if *showVersion {
 		fmt.Println(version)
-		os.Exit(0)
+		os.Exit(2)
 	}
 	if *root == "" {
 		log.Fatal("missing required flag --root")
