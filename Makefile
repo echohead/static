@@ -3,7 +3,7 @@ NAME=echohead/static
 all: build
 
 build:
-	go build --tags netgo --ldflags '-extldflags "-static"' -o static .
+	CGO_ENABLED=0 GOOS=linux go build -gcflags=-trimpath=$(GOPATH) -asmflags=-trimpath=$(GOPATH) -a -ldflags '-extldflags "-static"' -o static .
 
 docker: all
 	docker build -t $(NAME) .
